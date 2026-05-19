@@ -2,7 +2,9 @@ const URLS = {
     auth: {
         base: '/login',   
         login: '/login',   
-        signup: '/register' 
+        signup: '/register',
+        logout: '/logout',
+        validateToken: '/validate-token'
     },
     task: {
         base: '/tasks',

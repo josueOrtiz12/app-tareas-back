@@ -1,5 +1,5 @@
 import authServices from "../services/authServices.js";
-import { generateToken } from "../helpers/authHelper.js";
+import { generateToken, verifyToken } from "../helpers/authHelper.js";
 
 
 const authController = {
@@ -33,6 +33,38 @@ const authController = {
             res.status(401).json({
                 success: false,
                 message: 'Credenciales inválidas'
+            });
+        }
+    },
+    logout: async (req, res) => {
+        res.clearCookie("token", {
+            httpOnly: true,
+            sameSite: "lax",
+        });
+        res.status(200).json({
+            success: true,
+            message: "Sesión cerrada exitosamente"
+        });
+    },
+    validateToken: async (req, res) => {
+        try {
+            const token = req.cookies.token;
+            if (!token) {
+                return res.status(401).json({
+                    success: false,
+                    message: "No autorizado: Token no encontrado"
+                });
+            }
+            const decoded = verifyToken(token);
+            const user = await authServices.validateToken(decoded.id);
+            res.status(200).json({
+                success: true,
+                data: user
+            });
+        } catch (error) {
+            res.status(401).json({
+                success: false,
+                message: "Token inválido o expirado"
             });
         }
     },

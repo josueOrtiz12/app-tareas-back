@@ -11,5 +11,7 @@ const { auth } = URLS;
 
 router.post(auth.login, validate(loginSchema), authController.login);
 router.post(auth.signup, validate(registerSchema), authController.register);
+router.post(auth.logout, authController.logout);
+router.get(auth.validateToken, authController.validateToken);
 
 export default router;

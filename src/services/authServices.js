@@ -24,7 +24,6 @@ const authServices = {
             const token = jwt.sign(
                 {
                     id: user.user_id,
-                    role: user.role_id,
                     email: user.user_email,
                 },
                 process.env.JWT_SECRET,
@@ -32,11 +31,20 @@ const authServices = {
             );
 
 
-            return { token, user: { id: user.user_id, email: user.user_email, role: user.role_id } };
+            return { token, user: { id: user.user_id, email: user.user_email } };
         } catch (error) {
             if (error instanceof AppError) throw error;
             throw new AppError("Error en el servicio de autenticación", 500);
         }
+    },
+    validateToken: async (userId) => {
+        const user = await User.findByPk(userId, {
+            attributes: ['user_id', 'user_email', 'user_name']
+        });
+        if (!user) {
+            throw new AppError('Usuario no encontrado', 404);
+        }
+        return { id: user.user_id, email: user.user_email, name: user.user_name };
     },
     registerUser: async (data) => {
         try {
