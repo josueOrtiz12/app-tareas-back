@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+  import { describe, it, expect } from "vitest";
 import { hashPassword, comparePassword, verifyToken, generateToken } from "./authHelper.js";
 
 describe("authHelper", () => {
