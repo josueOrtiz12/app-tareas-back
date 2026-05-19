@@ -66,3 +66,30 @@ docker-compose exec app-tareas-back npx sequelize-cli db:migrate
 ```bash
 docker-compose exec app-tareas-back npx sequelize-cli db:seed:all
 ```
+
+
+
+## 🔄 testeo de back
+
+hashPassword + comparePassword — verifica que hashPassword("MiPassword123") genere un hash, que comparePassword coincida con el hash correcto y rechace uno distinto, y que retorne null si no recibe password.
+generateToken + verifyToken — genera un JWT con payload { id, email }, lo verifica y comprueba que los datos coincidan. También verifica que un token inválido lance error.
+
+
+```bash
+docker exec -w /app app-tareas-front npm test
+```
+
+
+
+## Uso de IA
+Se utilizo Deepseek y Gemini como herramienta de ayuda para la conexion del back al front y tanto para generar una buena prueba unitaria que permita el
+buen funcionamiento del helper de hashPassword.
+
+
+
+## decisiones técnicas
+Se trabajo las rutas como metodos de un objeto URL para facilitar la lectura entre el archivo principal de rutas y su respectivo llamado a sus controladores
+
+El uso de swager agiliza el uso de los endpoint al momento de desarrollar y probar cada uno de ellos
+
+
