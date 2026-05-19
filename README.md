@@ -83,7 +83,7 @@ docker exec -w /app app-tareas-front npm test
 
 ## Uso de IA
 Se utilizo Deepseek y Gemini como herramienta de ayuda para la conexion del back al front y tanto para generar una buena prueba unitaria que permita el
-buen funcionamiento del helper de hashPassword.
+buen funcionamiento del helper de hashPassword. se utilizo tambien como ayuda para el buen funcionamiento del contenedor de docker, tambien requeri ayuda de la ia para el endpoint de logout y poder borrar la cookies de session 
 
 
 
