@@ -1,4 +1,4 @@
-# 🚀 lista de tareas - Backend (Express + Docker)
+# 📝 lista de tareas - Backend (Express + Docker)
 
 <p align="center">
   <img src="https://img.shields.io/badge/Node.js-20-green?style=for-the-badge&logo=node.js" alt="Node Version" />
