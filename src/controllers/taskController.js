@@ -7,14 +7,19 @@ const taskController = {
 
             const userId = req.user.id;
 
+            const { taskStatus, ...restQuery } = req.query;
+
             const taskFields = {
                 taskName: 'task_name',
                 taskDescription: 'task_description',
                 taskLimit: 'task_limit',
-                taskStatus: 'task_status'
             }
 
-            const query = buildFilter(req.query, taskFields);
+            const query = buildFilter(restQuery, taskFields);
+
+            if (taskStatus) {
+                query.where.task_status = taskStatus;
+            }
 
             const { task, totalItems } = await taskServices.getAllTasks(query, userId);
             res.status(200).json({
@@ -47,6 +52,7 @@ const taskController = {
             const taskForm = {
                 task_name: req.body.title,
                 task_description: req.body.description,
+                task_limit: req.body.taskLimit || null,
                 task_status: taskStatus,
                 user_id: userId
             }

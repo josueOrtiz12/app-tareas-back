@@ -5,7 +5,8 @@
   "main": "App.js",
   "scripts": {
     "start": "node App.js",
-    "dev": "nodemon --legacy-watch App.js"
+    "dev": "nodemon --legacy-watch App.js",
+    "test": "vitest run"
   },
   "author": "",
   "license": "ISC",
@@ -26,5 +27,8 @@
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
     "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "vitest": "^4.1.6"
   }
 }

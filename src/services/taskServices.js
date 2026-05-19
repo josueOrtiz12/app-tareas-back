@@ -32,11 +32,11 @@ const taskServices = {
 
     createTask: async (taskForm) => {
         try {
-            const { task_name, task_description, task_status, user_id } = taskForm;
+            const { task_name, task_description, task_limit, task_status, user_id } = taskForm;
             if (!task_name || !task_description || !task_status) {
                 throw new AppError('Todos los campos son obligatorios', 400, 'Todos los campos son obligatorios');
             }
-            const newTask = await Task.create({ task_name, task_description, task_status, user_id });
+            const newTask = await Task.create({ task_name, task_description, task_limit, task_status, user_id });
             return newTask;
         } catch (error) {
             if (error instanceof AppError) throw error;
